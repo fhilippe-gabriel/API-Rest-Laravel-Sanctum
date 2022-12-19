@@ -17,5 +17,8 @@ class AuthController extends Controller
             'confirm_password' => 'required|same:password',
      ]);
 
+     if ($valigator->fails()){
+     return $this-shandletrror($validator-perrors());
+    }
 }
 }
