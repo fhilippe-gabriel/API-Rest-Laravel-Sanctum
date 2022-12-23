@@ -23,6 +23,19 @@ use App\Http\Controllers\API\BaseController;
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::resource('products', ProductController::class);
+
+    // //GET
+    // Route::get('/products', [ProductController::class, 'index'])->name('posts.index');
+    // Route::get('/products/{id}', [ProductController::class, 'show'])->name('posts.show');
+
+    // //POST
+    // Route::post('/products', [ProductController::class, 'store'])->name('posts.store');
+
+    // //PUT
+    // Route::post('/products/up/{id}', [ProductController::class, 'update'])->name('posts.update');
+
+    // //DELETE
+    // Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('posts.destroy');
 });
 
 Route::post('register', [AuthController::class, 'register']);

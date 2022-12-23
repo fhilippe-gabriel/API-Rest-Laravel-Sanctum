@@ -44,29 +44,49 @@ class ProductController extends BaseController
         return $this->handleResponse(new ProductResource($product), 'Produto Encontrado');
     }
 
+    // public function update(Request $request, Product $product)
+    // {
+    //     $input = $request->all();
+
+    //     $validator = Validator::make($input, [
+    //         'name' => 'required|unique:products, max:250',
+    //         'description' => 'nullable',
+    //         'price' => 'required',
+    //     ]);
+    //     if ($validator->fails()) {
+    //         return $this->handleError($validator->errors());
+    //     }
+
+    //     $product->name = $input['name'];
+    //     $product->description = $input['description'];
+    //     $product->save();
+
+    //     return $this->handleResponse(new ProductResource($product), 'Prodcuto atualizado com sucesso!');
+    // }
     public function update(Request $request, Product $product)
     {
         $input = $request->all();
 
         $validator = Validator::make($input, [
-            'name' => 'required|unique:products, max:250',
+            'name' => 'required',
             'description' => 'nullable',
             'price' => 'required',
         ]);
+
         if ($validator->fails()) {
             return $this->handleError($validator->errors());
         }
 
         $product->name = $input['name'];
         $product->description = $input['description'];
+        $product->price = $input['price'];
         $product->save();
 
-        return $this->handleResponse(new ProductResource($product), 'Prodcuto atualizado com sucesso!');
+        return $this->handleResponse(new ProductResource($product), 'Produto atualizado com sucesso!');
     }
-
     public function destroy(Product $product)
     {
-        # code...
+        $product->delete();
+        return $this->handleResponse([], 'Produto deletado');
     }
 }
-
